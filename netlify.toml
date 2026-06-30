@@ -1,0 +1,13 @@
+# Netlify deployment config for this Next.js app.
+# The official Next.js Runtime turns the app (including the /api/chat route)
+# into serverless functions automatically — no `publish` dir needed.
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  # Match the local toolchain; Next.js 15 needs Node 18.18+ / 20+ / 22.
+  NODE_VERSION = "22"
+
+[[plugins]]
+  package = "@netlify/plugin-nextjs"

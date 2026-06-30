@@ -1,0 +1,83 @@
+==============================================================
+ NETLIFY DEPLOY — STEP-BY-STEP CHECKLIST
+ Project: Khaled Hagar Portfolio
+ Repo:    https://github.com/khaledhagar/khaled_Portfolio
+==============================================================
+
+Everything on the code side is already done:
+  - Repo pushed to GitHub
+  - netlify.toml configured (build command + Next.js plugin)
+  - Secrets (.env) and CV PDFs kept OUT of the repo
+You only need to do the steps below on the Netlify website.
+
+--------------------------------------------------------------
+ STEP 1 — Sign in
+--------------------------------------------------------------
+[ ] Go to:  https://app.netlify.com
+[ ] Log in with your GitHub account (easiest).
+
+--------------------------------------------------------------
+ STEP 2 — Add the site
+--------------------------------------------------------------
+[ ] Click  "Add new site"
+[ ] Choose  "Import an existing project"
+[ ] Choose  "Deploy with GitHub"
+
+--------------------------------------------------------------
+ STEP 3 — Authorize & pick the repo
+--------------------------------------------------------------
+[ ] Approve GitHub access if asked.
+[ ] Select the repo:  khaledhagar/khaled_Portfolio
+
+--------------------------------------------------------------
+ STEP 4 — Build settings (leave as-is)
+--------------------------------------------------------------
+[ ] Do NOT change build command or publish directory.
+    Netlify reads netlify.toml automatically.
+[ ] (Optional) Rename the site to something clean,
+    e.g. "khaled-hagar"  ->  https://khaled-hagar.netlify.app
+[ ] Click  "Deploy"
+
+--------------------------------------------------------------
+ STEP 5 — Add environment variable: API KEY  (IMPORTANT)
+--------------------------------------------------------------
+This is what makes the AI career chat work.
+[ ] Go to:  Site configuration  ->  Environment variables
+[ ] Click  "Add a variable"
+        Key:    OPENROUTER_API_KEY
+        Value:  (copy the value from your local .env file,
+                 the line that starts with OPENROUTER_API_KEY=)
+
+--------------------------------------------------------------
+ STEP 6 — Add environment variable: SITE URL
+--------------------------------------------------------------
+[ ] Add one more variable:
+        Key:    NEXT_PUBLIC_SITE_URL
+        Value:  your live URL, e.g.
+                https://khaled-hagar.netlify.app
+        (Netlify shows the exact URL after the first deploy.)
+
+--------------------------------------------------------------
+ STEP 7 — Redeploy (so the new variables take effect)
+--------------------------------------------------------------
+Environment variables only apply to builds that run AFTER
+you add them, so a fresh deploy is required.
+[ ] Go to:  Deploys  ->  Trigger deploy  ->  "Deploy site"
+
+--------------------------------------------------------------
+ STEP 8 — Verify it works
+--------------------------------------------------------------
+[ ] Open your live URL.
+[ ] Check the homepage loads fully.
+[ ] Open the career chat and ask a question
+    (e.g. "What is Khaled most experienced in?").
+[ ] Confirm you get a reply.
+
+    If the chat errors -> it is almost always STEP 5
+    (key missing or has a typo). Re-check it, then redeploy.
+
+==============================================================
+ DONE. Optional next steps:
+   - Add a custom domain (Netlify -> Domain settings).
+     HTTPS is provisioned automatically.
+==============================================================

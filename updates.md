@@ -13,7 +13,7 @@ with the real CV, and (D) hosting on Netlify.
 | A | Project review | ✅ Done |
 | B | "Page fails to load" fix | ✅ Done & verified — 2026-06-29 |
 | C | Enrich app with real CV | ✅ Done & verified — 2026-06-30 |
-| D | Host on Netlify | ⬜ Not started (needs `git init` + Netlify account) |
+| D | Host on Netlify | ✅ Done & verified live — 2026-06-30 — https://khaled-hagar.netlify.app |
 | E | Pre-hosting testing | ✅ Done — 2026-06-29, re-verified 2026-06-30 |
 
 ---
@@ -220,10 +220,42 @@ introduced (projects, conferences, multi-role timeline).
 
 ---
 
-## D. Step 2 — Host on Netlify
+## D. Step 2 — Host on Netlify — ✅ COMPLETED & VERIFIED LIVE
+
+> **Status: DONE on 2026-06-30.** Site is live at **https://khaled-hagar.netlify.app**
+> and fully verified in production: homepage HTTP 200 with all enriched CV content,
+> CDN assets 200, proper 404 handling, security headers (incl. HSTS), and the AI
+> career chat working live (`OPENROUTER_API_KEY` set on Netlify — real answers +
+> graceful out-of-scope deferral).
+
 
 Good news: `netlify.toml` is **already configured** correctly (build = `npm run build`,
 Node 22, `@netlify/plugin-nextjs`). Remaining work is repo + deploy setup.
+
+### ✅ Completed 2026-06-30 — Git + GitHub
+
+- ✅ `git init` + `main` branch, local identity set (Khaled Hagar / khaledhagareyad@gmail.com).
+- ✅ Initial commit `4ac470a` created and pushed to
+  **https://github.com/khaledhagar/khaled_Portfolio** (public).
+- ✅ **Secrets/privacy verified kept out of the repo:** `.env` (OpenRouter key),
+  `Khaled Elsaid Hagar_Cv.pdf`, `Profile.pdf` (contain phone number), and
+  `.claude/settings.local.json` are all `.gitignore`d and confirmed absent from
+  `origin/main`. (`.gitignore` updated with the PDF + local-settings rules.)
+
+### ⬜ Remaining — Netlify connect & deploy (needs your Netlify account)
+
+1. **Connect the repo:** app.netlify.com → "Add new site" → "Import from Git" →
+   pick `khaledhagar/khaled_Portfolio`. Netlify reads `netlify.toml` automatically.
+2. **Set environment variables** (Site settings → Environment variables):
+   - `OPENROUTER_API_KEY` = your OpenRouter key (required for the chat).
+   - `NEXT_PUBLIC_SITE_URL` = the production URL (e.g. `https://<site>.netlify.app`).
+3. **Deploy & verify:** homepage renders + the career chat returns a reply
+   (exercises the `/api/chat` serverless function + the env key).
+4. **Optional:** add a custom domain (Netlify auto-provisions HTTPS).
+
+---
+
+### Original plan (for reference)
 
 ### Prerequisites
 - The project is **not yet a git repository** (`git init` needed).
@@ -297,7 +329,10 @@ key is only read at request time).
 
 1. ~~**Fix the page load** (Section B)~~ — ✅ Done & verified 2026-06-29.
 2. ~~**Enrich with CV** (Section C)~~ — ✅ Done & verified 2026-06-30 (clean build).
-3. **Deploy to Netlify** (Section D) — ⬜ **Remaining.** The site is verified locally
-   and build-clean. Next concrete steps: `git init` → first commit → push to GitHub →
-   connect on Netlify → set `OPENROUTER_API_KEY` env var → deploy & verify the chat.
-   Requires your GitHub/Netlify accounts; ready to do on your go-ahead.
+3. **Deploy to Netlify** (Section D) — ✅ **Done & live 2026-06-30** at
+   https://khaled-hagar.netlify.app. Pushed to GitHub, connected on Netlify,
+   `OPENROUTER_API_KEY` set, deployed, and verified live (homepage + chat working).
+
+---
+
+## All planned work (A–E) is complete. 🎉 Site is live and verified.
